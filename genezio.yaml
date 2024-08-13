@@ -1,0 +1,25 @@
+name: genezio-web-scraper
+region: eu-central-1
+yamlVersion: 2
+backend:
+    path: server
+    language:
+        name: ts
+        packageManager: npm
+    scripts:
+        deploy: npm install
+        local: npm install
+frontend:
+    path: client
+    publish: dist
+    sdk:
+        language: ts
+    scripts:
+        deploy:
+            - npm install @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
+            - npm install
+        build: npm run build
+        start:
+            - npm install
+            - npm run dev
+    subdomain: genezio-web-scraper
